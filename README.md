@@ -26,5 +26,5 @@ Wolterink et al.: Implicit Neural Representations for Deformable Image Registrat
 
 # Contact:
 
-veronika.zimmer@tum.de, vam.zimmer@gmail.com
+veronika.zimmer@tum.de, vam.zimmer@gmail.com  
 k.hammernik@tum.de
