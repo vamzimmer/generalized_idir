@@ -8,9 +8,9 @@ Neural implicit representations (NIRs) enable to parametrize the transformation 
 ![Method overview!](Fig1_architectures.png "Method overview")
 
 # Usage
-    python scripts/generalization/run-general.py --exp=X --mode={train,test} --user={KH,VZ}
+    python scripts/generalization/run-general.py --exp=X --mode={train,test}
 
-for config file with name L2R2022-T1-[user]-X
+for config file with name L2R2022-T1-X
 
 # Data
 We have used data from the Learn2Reg challenge 2022 Task 1.

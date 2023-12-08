@@ -1,0 +1,35 @@
+name: ireginr
+channels:
+  - simpleitk
+  - plotly
+  - pytorch
+  - nvidia
+  - anaconda
+  - defaults
+  - conda-forge
+dependencies:
+  - cudatoolkit=11.6
+  - ipykernel=6.15.2
+  - ipython=8.4.0
+  - ipywidgets=8.0.4
+  - jupyter_core=4.11.1
+  - jupyterlab_widgets=3.0.5
+  - matplotlib=3.5.3
+  - nibabel=5.0.0
+  - numpy=1.23.5
+  - openpyxl=3.0.10
+  - pandas=1.4.3
+  - pillow=9.3.0
+  - plotly=5.13.0
+  - python=3.10.9
+  - pytorch=1.13.1
+  - pytorch-cuda=11.6
+  - pytorch-lightning=1.9.0
+  - pyyaml=6.0
+  - simpleitk=2.2.1
+  - torchaudio=0.13.1
+  - torchio=0.18.87
+  - torchvision=0.14.1
+  - tqdm=4.64.1
+  - xlrd=2.0.1
+  - yaml=0.2.5
