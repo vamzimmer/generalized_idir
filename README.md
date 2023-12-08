@@ -16,9 +16,15 @@ for config file with name L2R2022-T1-X
 We have used data from the Learn2Reg challenge 2022 Task 1.
 
 # Reference
-V.A. Zimmer, K. Hammernik, Vasiliki Sideri-Lampretsa, Wenqi Huang, Anna Reithmeir, Daniel Rueckert, and Julia A. Schnabel: Towards generalised neural implicit representations for image registration. DGM4MICCAI 2023.
+V.A. Zimmer*, K. Hammernik*, Vasiliki Sideri-Lampretsa, Wenqi Huang, Anna Reithmeir, Daniel Rueckert, and Julia A. Schnabel: Towards generalised neural implicit representations for image registration. DGM4MICCAI 2023.
+
+* Authors contributed equally
 
 # Note
 The code is heavily based on and modifies the repository https://github.com/MIAGroupUT/IDIR from the paper
 Wolterink et al.: Implicit Neural Representations for Deformable Image Registration, MIDL 2022
 
+# Contact:
+
+veronika.zimmer@tum.de, vam.zimmer@gmail.com
+k.hammernik@tum.de
