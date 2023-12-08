@@ -1,0 +1,364 @@
+{
+    "name": "NLST",
+    "release": "0.91",
+    "description": "Training/Validation Subset NLST of Learn2Reg Dataset. Please see https://learn2reg.grand-challenge.org/ for more information. ",
+    "licence": "National Lung Screening Trial Research Team. (2013). Data from the National Lung Screening Trial (NLST) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.HMQ8-J677. National Lung Screening Trial Research Team*; Aberle DR, Adams AM, Berg CD, Black WC, Clapp JD, Fagerstrom RM, Gareen IF, Gatsonis C, Marcus PM, Sicks JD (2011). Reduced Lung-Cancer Mortality with Low-Dose Computed Tomographic Screening. New England Journal of Medicine, 365(5), 395\u2013409. https://doi.org/10.1056/nejmoa1102873. Clark K, Vendt B, Smith K, Freymann J, Kirby J, Koppel P, Moore S, Phillips S, Maffitt D, Pringle M, Tarbox L, Prior F. The Cancer Imaging Archive (TCIA): Maintaining and Operating a Public Information Repository, Journal of Digital Imaging, Volume 26, Number 6, December, 2013, pp 1045-1057. DOI: https://doi.org/10.1007/s10278-013-9622-7. For more information, see https://wiki.cancerimagingarchive.net/plugins/servlet/mobile?contentId=5800702#content/view/5800702",
+    "reference": "",
+    "pairings": "paired",
+    "provided_data": {
+        "0": [
+            "image",
+            "mask",
+            "keypoints"
+        ]
+    },
+    "registration_direction": {
+        "fixed": 0,
+        "moving": 1
+    },
+    "modality": {
+        "0": "CT",
+        "1": "CT"
+    },
+    "img_shift": {
+        "fixed": "baseline",
+        "moving": "followup"
+    },
+    "labels": {},
+    "tensorImageSize": {
+        "0": "3D"
+    },
+    "tensorImageShape": {
+        "0": [
+            224,
+            192,
+            224
+        ]
+    },
+    "voxel_size": {
+        "fixed": [1.5, 1.5, 1.5],
+        "moving": [1.5, 1.5, 1.5]
+    },
+    "image_size": [224, 192, 224],
+    "exp_name": "L2R2022-T1-KH-N10-AE-localQAM-5l-512-Omega50-rescale",
+    "checkpoint": "checkpoint-epochs0.pt",
+    "data_augmentation": 1,
+    "whitening": 0,
+    "rescaling": [-1, 1],
+    "blur": [0, 0.25],
+    "noise": [0, 0.25],
+    "spatial": [0, 0.5, 0.5],
+    "flip": [0, ["LR","AP"]],
+    "verbose": 1,
+    "epochs": 2500,
+    "batch_size": 10000,
+    "test_batch_size": 1000000,
+    "lr" : 1e-5,
+    "regularization": "bending",
+    "alpha_bending": 10.0,
+    "network_type": "SIREN-ENC",
+    "layers": [3, 512, 512, 512, 512, 512, 3],
+    "patch_size": "none",
+    "FM_mapping_type": "fourier",
+    "FM_mapping_size": 128,
+    "FM_sigma": 0.1,
+    "encoder_type": "AE",
+    "modulation_type": "localQAM",
+    "modulation_activation_type": "sigmoid",
+    "omega": 50,
+    "encoder" : {
+        "input_dim" : 1,
+        "upsample_mode" : "convT",
+        "feature_dim" : 32,
+        "hidden_dim" : 128,
+        "output_dim" : 64,
+        "fc_layers" : 1,
+        "norm_type" : "bn",
+        "activation_type" : "leaky_relu",
+        "num_layers" : 4,
+        "activation_type_last" : "none",
+        "checkpoint" : "L2R2022-T1-AEexp8-img.pt",
+        "freeze_weights" : 1,
+        "encoder_loss" : "L1",
+        "activation_type_latent" : "leaky_relu"
+    }, 
+    "evaluation_methods": [
+        {
+            "name": "TRE_kp",
+            "metric": "tre",
+            "dest": "keypoints"
+        },
+        {
+            "name": "DSC",
+            "metric": "dice",
+            "labels": [
+                1
+            ]
+        },
+        {
+            "name": "HD95",
+            "metric": "hd95",
+            "labels": [
+                1
+            ]
+        },
+        {
+            "name": "LogJacDetStd",
+            "metric": "sdlogj"
+        }
+    ],
+    "use_mask": 1,
+    "task_name": "L2R2022-T1",
+    "numTest": 0,
+    "test": [],
+    "numTraining": 10,
+    "training": [
+        {
+            "fixed": "./imagesTr/NLST_0091_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0091_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0091_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0091_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0091_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0091_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0092_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0092_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0092_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0092_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0092_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0092_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0093_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0093_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0093_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0093_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0093_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0093_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0094_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0094_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0094_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0094_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0094_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0094_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0095_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0095_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0095_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0095_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0095_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0095_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0096_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0096_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0096_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0096_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0096_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0096_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0097_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0097_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0097_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0097_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0097_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0097_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0098_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0098_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0098_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0098_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0098_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0098_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0099_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0099_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0099_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0099_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0099_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0099_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0100_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0100_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0100_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0100_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0100_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0100_0001.csv"
+        } 
+    ],
+    "numTesting": 10,
+    "testing": [
+        {
+            "fixed": "./imagesTr/NLST_0091_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0091_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0091_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0091_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0091_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0091_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0092_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0092_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0092_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0092_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0092_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0092_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0093_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0093_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0093_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0093_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0093_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0093_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0094_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0094_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0094_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0094_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0094_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0094_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0095_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0095_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0095_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0095_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0095_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0095_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0096_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0096_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0096_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0096_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0096_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0096_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0097_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0097_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0097_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0097_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0097_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0097_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0098_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0098_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0098_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0098_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0098_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0098_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0099_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0099_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0099_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0099_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0099_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0099_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0100_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0100_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0100_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0100_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0100_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0100_0001.csv"
+        }
+
+    ],
+    "numValidation": 10,
+    "validation": [
+        {
+            "fixed": "./imagesTr/NLST_0091_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0091_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0091_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0091_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0091_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0091_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0092_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0092_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0092_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0092_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0092_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0092_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0093_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0093_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0093_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0093_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0093_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0093_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0094_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0094_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0094_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0094_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0094_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0094_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0095_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0095_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0095_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0095_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0095_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0095_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0096_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0096_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0096_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0096_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0096_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0096_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0097_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0097_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0097_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0097_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0097_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0097_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0098_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0098_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0098_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0098_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0098_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0098_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0099_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0099_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0099_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0099_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0099_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0099_0001.csv"
+        },
+        {
+            "fixed": "./imagesTr/NLST_0100_0000.nii.gz",
+            "moving": "./imagesTr/NLST_0100_0001.nii.gz",
+            "fixed_mask": "./masksTr/NLST_0100_0000.nii.gz",
+            "moving_mask": "./masksTr/NLST_0100_0001.nii.gz",
+            "fixed_landmarks": "./keypointsTr/NLST_0100_0000.csv",
+            "moving_landmarks": "./keypointsTr/NLST_0100_0001.csv"
+        } 
+    ]
+}

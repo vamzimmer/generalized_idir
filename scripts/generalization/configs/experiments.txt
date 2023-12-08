@@ -1,0 +1,5 @@
+- loss function
+- bigger MLP
+- more emphasize on MLP, balance between linear encoder layer
+- optimizer - learningrate
+- 
